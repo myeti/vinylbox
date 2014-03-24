@@ -1,0 +1,176 @@
+/**
+ * General
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600);
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+body, html {
+    padding: 0;
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    color: #555;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+section > header {
+    height: 80px;
+    font-size: 28px;
+    padding: 20px 30px;
+}
+
+section#artists {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+}
+section#albums {
+    position: fixed;
+    top: 0;
+    left: 280px;
+    right: 0;
+    bottom: 0;
+}
+section#details {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 380px;
+}
+
+
+/**
+ * Artists
+ */
+
+#artists {
+    background: #F9F9F6;
+}
+#artists header {
+    color: #FFF;
+    text-align: center;
+    background: #FF5E3A;
+}
+#artists header strong {
+    font-weight: inherit;
+    color: #ffb09c;
+}
+#artists #artist-list {
+    padding: 0 20px;
+    margin: 0;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    list-style: none;
+}
+#artists #artist-list li a {
+    display: block;
+    padding: 6px 16px;
+    color: #808181;
+    border-radius: 6px;
+}
+#artists #artist-list li a aside {
+    display: none;
+    float: right;
+}
+#artists #artist-list li:hover a {
+    color: #FA8267;
+}
+#artists #artist-list li:hover a aside {
+    display: inline-block;
+    color: #FA8267;
+}
+#artists #artist-list li.active a {
+    background: #F3E3DD;
+    color: #FA8267;
+}
+
+
+/**
+ * Albums
+ */
+#albums {
+    overflow: auto;
+}
+#albums header {
+    background: #F9F9F6;
+}
+#albums #album-list {
+    padding: 20px;
+    margin: 0;
+    list-style: none;
+}
+#albums #album-list > li {
+    height: 120px;
+    margin: 20px;
+}
+#albums #album-list > li h2 {
+    margin: 0;
+    padding: 8px 0;
+    font-weight: 300;
+    font-size: 22px;
+}
+#albums #album-list > li .year {
+    font-size: 14px;
+    color: #BBB;
+}
+#albums #album-list > li img {
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+}
+
+
+/**
+ * Details
+ */
+#details {
+    background: #F9F9F6;
+}
+#details header {
+    background: #E9E9E6;
+}
+#details .infos {
+    padding: 30px;
+}
+#details .infos .line {
+
+}
+#details ul.sides {
+    margin: 0;
+    padding: 0 30px;
+    list-style: none;
+}
+#details ul.sides > li {
+    margin-bottom: 20px;
+}
+#details ul.sides > li h3 {
+    margin: 0;
+    font-size: 16px;
+}
+#details ul.sides > li ol.tracks {
+    padding: 0;
+    margin: 0;
+    margin-left: 20px;
+}
+#details ul.sides > li ol.tracks li {
+    margin-top: 2px;
+}
+#details ul.sides > li ol.tracks li aside {
+    float: right;
+    color: #BBB;
+}
