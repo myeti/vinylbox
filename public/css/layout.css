@@ -3,6 +3,7 @@
  */
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600);
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
 @import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
 body, html {
@@ -22,10 +23,27 @@ a {
     color: inherit;
 }
 
+button, input, textarea {
+    outline: none;
+}
+
 section > header {
     height: 80px;
     font-size: 28px;
+    font-family: 'Montserrat', sans-serif;
     padding: 20px 30px;
+}
+section > header .actions {
+    display: inline-block;
+    float: right;
+}
+section > header .actions a {
+    display: inline-block;
+    color: #CCC;
+    margin-left: 20px;
+}
+section > header .actions a:hover {
+    color: inherit;
 }
 
 section#artists {
@@ -39,7 +57,7 @@ section#albums {
     position: fixed;
     top: 0;
     left: 280px;
-    right: 0;
+    right: 380px;
     bottom: 0;
 }
 section#details {
@@ -56,19 +74,22 @@ section#details {
  */
 
 #artists {
-    background: #F9F9F6;
+    background: #262A33;
 }
 #artists header {
     color: #FFF;
     text-align: center;
-    background: #FF5E3A;
+    background: #48C0EB;
 }
-#artists header strong {
-    font-weight: inherit;
-    color: #ffb09c;
+#artists header i {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 8px;
+    font-size: 22px;
+    font-weight: bold;
 }
 #artists #artist-list {
-    padding: 0 20px;
+    padding: 10px 20px;
     margin: 0;
     position: absolute;
     top: 90px;
@@ -77,26 +98,17 @@ section#details {
     bottom: 0;
     list-style: none;
 }
-#artists #artist-list li a {
+#artists #artist-list li {
     display: block;
     padding: 6px 16px;
-    color: #808181;
-    border-radius: 6px;
+    color: #95979B;
+    font-weight: 400;
+    border-radius: 4px;
 }
-#artists #artist-list li a aside {
-    display: none;
-    float: right;
-}
-#artists #artist-list li:hover a {
-    color: #FA8267;
-}
-#artists #artist-list li:hover a aside {
-    display: inline-block;
-    color: #FA8267;
-}
-#artists #artist-list li.active a {
-    background: #F3E3DD;
-    color: #FA8267;
+#artists #artist-list li:hover {
+    color: #FFF;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
 }
 
 
@@ -105,33 +117,64 @@ section#details {
  */
 #albums {
     overflow: auto;
+    background: #ECEDEF;
 }
 #albums header {
-    background: #F9F9F6;
+    padding-left: 40px;
 }
 #albums #album-list {
-    padding: 20px;
+    padding: 0 20px;
     margin: 0;
+    margin-top: -20px;
     list-style: none;
 }
-#albums #album-list > li {
-    height: 120px;
+#albums #album-list > li,
+#albums #album-list > a {
+    display: inline-block;
+    vertical-align: top;
     margin: 20px;
+    text-align: center;
+    cursor: pointer;
 }
-#albums #album-list > li h2 {
+#albums #album-list > li img {
+    width: 180px;
+    height: auto;
+    border: 2px solid transparent;
+}
+#albums #album-list > li h2,
+#albums #album-list > a h2 {
     margin: 0;
-    padding: 8px 0;
+    padding-top: 2px;
     font-weight: 300;
-    font-size: 22px;
+    font-size: 18px;
 }
 #albums #album-list > li .year {
     font-size: 14px;
     color: #BBB;
 }
-#albums #album-list > li img {
+#albums #album-list > li:hover * {
+    color: #48C0EB;
+}
+#albums #album-list > li:hover img {
+    border-color: #48C0EB;
+}
+
+#albums #album-list > a {
     display: inline-block;
-    float: left;
-    margin-right: 20px;
+    opacity: 0.6;
+    color: #CCC;
+}
+#albums #album-list > a:hover {
+    opacity: 1;
+}
+#albums #album-list > a .add {
+    width: 178px;
+    height: 178px;
+    padding-top: 60px;
+    margin-bottom: 4px;
+    border: 4px dotted #DDD;
+    border-radius: 20px;
+    font-size: 50px;
 }
 
 
@@ -139,16 +182,25 @@ section#details {
  * Details
  */
 #details {
-    background: #F9F9F6;
+    background: #FBFCFD;
 }
 #details header {
-    background: #E9E9E6;
+
 }
 #details .infos {
+    margin-top: -30px;
     padding: 30px;
 }
+#details .infos img {
+    width: 100%;
+    height: auto;
+}
 #details .infos .line {
-
+    padding: 2px 0;
+}
+#details .infos .line .label {
+    display: inline-block;
+    width: 60px;
 }
 #details ul.sides {
     margin: 0;
@@ -173,4 +225,87 @@ section#details {
 #details ul.sides > li ol.tracks li aside {
     float: right;
     color: #BBB;
+}
+
+
+
+/**
+ * Modal
+ */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 100;
+}
+.overlay .modal {
+    margin: 60px auto;
+    width: 600px;
+    padding: 40px;
+    background: #FFF;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.modal header {
+    padding-bottom: 20px;
+    font-size: 22px;
+    font-family: "Montserrat", sans-serif;
+}
+.modal footer {
+    padding-top: 20px;
+    text-align: right;
+}
+.modal footer button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 0;
+    background: #CCC;
+    color: #FFF;
+    font-size: 14px;
+    cursor: pointer;
+}
+.modal footer button[type=submit] {
+    background: #48C0EB;
+}
+
+.modal form .line {
+    margin-bottom: 20px;
+}
+.modal form .line input {
+    display: block;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+.modal form .line input.short {
+    display: inline-block;
+    width: 50px;
+}
+.modal form .line input:focus {
+    border-color: #BBB;
+}
+
+.modal form .line.side .sidelist {
+    float: right;
+    width: 20px;
+}
+.modal form .line.side .sidelist a {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.modal form .line.side textarea {
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+    padding: 8px 12px;
+    font-size: 14px;
+    width: 380px;
+    height: 120px;
 }

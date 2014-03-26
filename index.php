@@ -7,22 +7,12 @@ require 'vendor/autoload.php';
 
 
 /**
- * Time tracking
- */
-
-use Craft\Trace\Tracker;
-
-$tracker = new Tracker();
-$tracker->start('app');
-
-
-/**
  * Database connector
  */
 
 use Craft\Orm\Syn;
 
-Syn::SQLite('vinylbox.db')
+Syn::SQLite('database.sqlite')
     ->map('artist', 'My\Model\Artist')
     ->map('album', 'My\Model\Album')
     ->map('track', 'My\Model\Track')
@@ -34,10 +24,20 @@ Syn::SQLite('vinylbox.db')
  */
 
 $app = new Craft\App\Bundle([
-    '/'             => 'My\Logic\Manager::dashboard',
-    '/artist/:id'   => 'My\Logic\Manager::artist',
-    '/album/:id'    => 'My\Logic\Manager::album',
-    '/lost'         => 'My\Logic\Error::lost',
+
+    '/'                     => 'My\Logic\Front::hello',
+
+    '/artist/create'        => 'My\Logic\Artists::create',
+    '/artist/:id/update'    => 'My\Logic\Artists::update',
+    '/artist/:id/delete'    => 'My\Logic\Artists::delete',
+    '/artist/:id'           => 'My\Logic\Artists::show',
+
+    '/album/create/:artist' => 'My\Logic\Albums::create',
+    '/album/:id/update'     => 'My\Logic\Albums::update',
+    '/album/:id/delete'     => 'My\Logic\Albums::delete',
+    '/album/:id'            => 'My\Logic\Albums::show',
+
+    '/lost'                 => 'My\Logic\Error::lost',
 ]);
 
 
@@ -53,10 +53,3 @@ $app->on(404, function() use($app) {
  * Open the VinylBox !
  */
 $app->handle();
-
-
-/**
- * Tracking report
- */
-
-echo $tracker->end('app')->report();

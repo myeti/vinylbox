@@ -111,7 +111,6 @@ class Jar implements JarInterface
     {
         // make sql
         $sql = $this->builder->create($this->prefix . $entity, $fields);
-
         return $this->pdo->query($sql)->rowCount();
     }
 

@@ -43,11 +43,23 @@ class EntityBuilder
                 $opts['type'] = $type;
             }
 
-            $sql .= '`' . $field . '` ' . $opts['type'];
+            // fix type
+            $opts['type'] = trim($opts['type']);
+            if($opts['type'] == 'string') {
+                $opts['type'] = 'varchar(255)';
+            }
+            elseif($opts['type'] == 'int') {
+                $opts['type'] = 'integer';
+            }
+
+            // add line
+            $sql .= '`' . $field . '` ' . trim($opts['type']);
 
             // primary
             if($opts['primary']) {
-                $sql .= ' auto_increment';
+                $sql .= ' primary key autoincrement';
+                $opts['null'] = false;
+                $opts['default'] = null;
             }
 
             // null

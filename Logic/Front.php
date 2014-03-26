@@ -6,25 +6,27 @@
  */
 namespace My\Logic;
 
-use Craft\Box\Auth;
-use Craft\Box\Env;
-use Craft\Box\Flash;
-use Craft\Box\Mog;
-use Craft\Box\Session;
-use My\Model\User;
+use My\Model\Artist;
 
-/**
- * You can already define some metadata that will be applied
- * to all method, such as
- * - `@auth` : define the user rank required, if not enough, 403 is thrown
- * - `@render` : the template to use
- */
 class Front
 {
 
     /**
+     * Landing page
+     * @render views/front.hello
+     * @return array
+     */
+    public function hello()
+    {
+        // get all artists
+        $artists = Artist::all();
+
+        return ['artists' => $artists];
+    }
+
+    /**
      * 404 Not found
-     * @render views/error.404
+     * @render views/front.404
      */
     public function lost() {}
 

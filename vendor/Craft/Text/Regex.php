@@ -39,7 +39,7 @@ abstract class Regex
             }
 
             // return matched env
-            return $matches;
+            return array_values($matches);
         }
 
         return false;

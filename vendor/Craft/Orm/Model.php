@@ -33,7 +33,7 @@ trait Model
      * @param array $where
      * @return mixed
      */
-    public static function one(array $where = [])
+    public static function one($where = [])
     {
         return Syn::one(static::entity(), $where);
     }
@@ -42,7 +42,7 @@ trait Model
     /**
      * Save entity
      * @param $data
-     * @return int
+     * @return self
      */
     public static function save($data)
     {
@@ -55,9 +55,9 @@ trait Model
      * @param $id
      * @return int
      */
-    public static function drop($id)
+    public static function drop($where = [])
     {
-        return Syn::drop(static::entity(), $id);
+        return Syn::drop(static::entity(), $where);
     }
 
 

@@ -70,7 +70,7 @@ class Bean implements BeanInterface
 
     /**
      * Get many rows
-     * @return $this
+     * @return array
      */
     public function all()
     {
@@ -82,13 +82,9 @@ class Bean implements BeanInterface
         $stm = $this->pdo->prepare($sql);
         $stm->execute($values);
 
-        // cast
-        if($this->class) {
-            $stm->setFetchMode(\PDO::FETCH_CLASS, $this->class);
-            return $stm->fetchAll(\PDO::FETCH_CLASS);
-        }
-
-        return $stm->fetchAll(\PDO::FETCH_OBJ);
+        return $this->class
+            ? $stm->fetchAll(\PDO::FETCH_CLASS, $this->class)
+            : $stm->fetchAll(\PDO::FETCH_OBJ);
     }
 
 

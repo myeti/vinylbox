@@ -107,8 +107,12 @@ abstract class Syn
      * @param array $where
      * @return mixed
      */
-    public static function one($entity, array $where = [])
+    public static function one($entity, $where = [])
     {
+        if(!is_array($where)) {
+            $where = ['id' => $where];
+        }
+
         $jar = static::jar()->get($entity);
 
         foreach($where as $expression => $value) {
@@ -145,12 +149,22 @@ abstract class Syn
     /**
      * Drop entity
      * @param $entity
-     * @param $id
+     * @param $where
      * @return int
      */
-    public static function drop($entity, $id)
+    public static function drop($entity, $where = [])
     {
-        return static::jar()->get($entity)->where('id', $id)->drop();
+        if(!is_array($where)) {
+            $where = ['id' => $where];
+        }
+
+        $jar = static::jar()->get($entity);
+
+        foreach($where as $expression => $value) {
+            $jar->where($expression, $value);
+        }
+
+        return $jar->drop();
     }
 
 

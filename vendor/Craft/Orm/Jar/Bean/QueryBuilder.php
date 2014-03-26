@@ -113,7 +113,7 @@ class QueryBuilder
         $last = end($split);
 
         // case 1 : missing '= ?'
-        if(preg_match('/^[a-zA-Z_0-9]$/', $expression)) {
+        if(preg_match('/^[a-zA-Z0-9_]+$/', $expression)) {
             $expression .= ' = ?';
         }
         // case 2 : missing '?'
@@ -128,7 +128,7 @@ class QueryBuilder
             }
         }
 
-        $this->where[$expression] = $values;
+        $this->where[$expression] = count($values) == 1 ? $values[0] : $values;
         return $this;
     }
 
@@ -181,7 +181,12 @@ class QueryBuilder
                 $where = [];
                 foreach($this->where as $exp => $data) {
                     $where[] = $exp;
-                    $values = array_merge($values, $data);
+                    if(is_array($data)) {
+                        $values = array_merge($values, $data);
+                    }
+                    else {
+                        $values[] = $data;
+                    }
                 }
                 $sql[] = 'WHERE ' . implode(' AND ', $where);
             }
@@ -195,7 +200,7 @@ class QueryBuilder
             }
 
             if($this->limit) {
-                $sql[] = 'LIMIT' . $this->limit;
+                $sql[] = 'LIMIT ' . $this->limit;
             }
 
         }
@@ -206,7 +211,7 @@ class QueryBuilder
 
             $fields = $holders = [];
             foreach($this->insert as $field => $value) {
-                $fields = '`' . $field . '`';
+                $fields[] = '`' . $field . '`';
                 $holders[] = '?';
                 $values[] = $value;
             }
@@ -229,7 +234,12 @@ class QueryBuilder
                 $where = [];
                 foreach($this->where as $exp => $data) {
                     $where[] = $exp;
-                    $values = array_merge($values, $data);
+                    if(is_array($data)) {
+                        $values = array_merge($values, $data);
+                    }
+                    else {
+                        $values[] = $data;
+                    }
                 }
                 $sql[] = 'WHERE ' . implode(' AND ', $where);
             }
@@ -244,7 +254,12 @@ class QueryBuilder
                 $where = [];
                 foreach($this->where as $exp => $data) {
                     $where[] = $exp;
-                    $values = array_merge($values, $data);
+                    if(is_array($data)) {
+                        $values = array_merge($values, $data);
+                    }
+                    else {
+                        $values[] = $data;
+                    }
                 }
                 $sql[] = 'WHERE ' . implode(' AND ', $where);
             }
