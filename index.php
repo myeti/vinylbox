@@ -9,7 +9,7 @@ require 'vendor/autoload.php';
 /**
  * Config
  */
-define('OWNER',     'Babor Lelefan');
+define('OWNER',     'Gabriel Rollinger');
 define('COVER_DIR', '/public/img/cover/');
 @chmod(COVER_DIR, 0777);
 

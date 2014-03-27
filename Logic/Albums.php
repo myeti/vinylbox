@@ -53,10 +53,12 @@ class Albums
                 $album->cover = COVER_DIR . $id . '.' . end($split);
                 File::write($data['cover_url'], path($album->cover));
                 unset($data['cover_url']);
+                Album::save($album);
             }
             elseif($file = Mog::file('cover_upload')) {
                 $album->cover = COVER_DIR . $id . '.' . pathinfo($file->name, PATHINFO_EXTENSION);
                 File::upload('cover_upload', path($album->cover));
+                Album::save($album);
             }
 
             // save tracks
