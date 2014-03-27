@@ -27,8 +27,12 @@ button, input, textarea {
     outline: none;
 }
 
+
+/**
+ * Layout
+ */
 section > header {
-    height: 80px;
+    min-height: 80px;
     font-size: 28px;
     font-family: 'Montserrat', sans-serif;
     padding: 20px 30px;
@@ -36,6 +40,10 @@ section > header {
 section > header .actions {
     display: inline-block;
     float: right;
+    opacity: 0.2;
+}
+section > header:hover .actions {
+    opacity: 1;
 }
 section > header .actions a {
     display: inline-block;
@@ -66,6 +74,35 @@ section#details {
     right: 0;
     bottom: 0;
     width: 380px;
+}
+
+
+/**
+ * Hello
+ */
+#hello {
+    padding: 0 50px;
+}
+#hello h2 {
+    font-size: 20px;
+    font-weight: 300;
+}
+#hello ul {
+    list-style: none;
+    margin-bottom: 50px;
+}
+#hello ul li {
+    font-size: 22px;
+    color: #999;
+}
+#hello a {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 0;
+    background: #48C0EB;
+    color: #FFF;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 
@@ -135,6 +172,7 @@ section#details {
     margin: 20px;
     text-align: center;
     cursor: pointer;
+    width: 180px;
 }
 #albums #album-list > li img {
     width: 180px;

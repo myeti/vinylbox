@@ -7,6 +7,13 @@ require 'vendor/autoload.php';
 
 
 /**
+ * Config
+ */
+define('OWNER',     'Babor Lelefan');
+define('COVER_DIR', '/public/img/cover/');
+
+
+/**
  * Database connector
  */
 

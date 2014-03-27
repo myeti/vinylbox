@@ -1,9 +1,9 @@
 <header>
-    <?= $artist->fullname ?>
     <div class="actions">
         <a href="<?= url('/artist', $artist->id, 'update') ?>" data-modal><i class="fa fa-gear"></i></a>
-        <a href="<?= url('/artist', $artist->id, 'delete') ?>" data-confirm="Etes-vous sûr de vouloir supprimer cet artiste ?"><i class="fa fa-times"></i></a>
+        <a href="<?= url('/artist', $artist->id, 'delete') ?>" data-confirm="Etes-vous sÃ»r de vouloir supprimer cet artiste ?"><i class="fa fa-times"></i></a>
     </div>
+    <?= $artist->fullname ?>
 </header>
 
 <ul id="album-list">

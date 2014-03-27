@@ -2,7 +2,7 @@
     <?= $album->id ? 'Modifier ' . $album->title : 'Nouvel album' ?>
 </header>
 
-<form action="<?= $album->id ? url('/album', $album->id, 'update') : url('/album/create', $album->artist_id) ?>" method="POST" id="album-form">
+<form action="<?= $album->id ? url('/album', $album->id, 'update') : url('/album/create', $album->artist_id) ?>" method="post" id="album-form" enctype="multipart/form-data">
 
     <div class="line">
         Titre : <input type="text" name="title" value="<?= $album->title ?>" />
@@ -16,6 +16,14 @@
         Genre : <input type="text" name="genre" value="<?= $album->genre ?>" />
     </div>
 
+    <div class="line">
+        Cover (upload) : <input type="file" name="cover_upload"/>
+    </div>
+
+    <div class="line">
+        Cover (url) : <input type="text" name="cover_url" />
+    </div>
+
     <div class="sides">
 
         <?php $i = 0; foreach($tracklist as $side => $tracks): ?>
@@ -24,7 +32,7 @@
                 <a class="add" href="#"><i class="fa fa-plus"></i></a>
             </div>
             Side <input type="text" class="short" name="sides[<?= $i ?>][name]" value="<?= $side ?>" /> :
-            <textarea name="sides[<?= $i++ ?>][tracks]"><?php foreach($tracks as $track) { echo $track->title, ' (', $track->duration, ')', "\n"; } ?></textarea>
+            <textarea name="sides[<?= $i++ ?>][tracks]" placeholder="Titre de la piste (3:10)"><?php foreach($tracks as $track) { echo $track->title, ' (', $track->duration, ')', "\n"; } ?></textarea>
         </div>
         <?php endforeach; ?>
 
@@ -52,20 +60,21 @@ $(document).ready(function(){
         '       <a class="add" href="#"><i class="fa fa-plus"></i></a>' +
         '   </div>' +
         '   Side <input type="text" class="short" name="sides[{i}][name]" value="{side}" /> :' +
-        '   <textarea name="sides[{i}][tracks]"></textarea>' +
+        '   <textarea name="sides[{i}][tracks]" placeholder="Titre de la piste (3:10)"></textarea>' +
         '</div>';
 
 
     // add
-    $('.sides').on('click', '.add', function(e){
+    $('#album-form .sides').on('click', '.add', function(e){
 
         // get data
-        var i = $('.sides .side').last().data('i') + 1;
+        var i = $('#album-form .sides .side').last().data('i') + 1;
+        console.log(i);
 
         // append
         var html = sample.replace('{i}', i);
         html = html.replace('{side}', labels[i]);
-        $('.sides').append(html);
+        $('#album-form .sides').append(html);
 
         e.preventDefault();
         return false;

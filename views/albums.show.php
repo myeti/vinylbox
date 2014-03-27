@@ -1,9 +1,9 @@
 <header>
-    <?= $album->title ?>
     <div class="actions">
         <a href="<?= url('/album', $album->id, 'update') ?>" data-modal><i class="fa fa-gear"></i></a>
-        <a href="<?= url('/album', $album->id, 'delete') ?>" data-confirm="Etes-vous sûr de vouloir supprimer cet album ?"><i class="fa fa-times"></i></a>
+        <a href="<?= url('/album', $album->id, 'delete') ?>" data-confirm="Etes-vous sÃ»r de vouloir supprimer cet album ?"><i class="fa fa-times"></i></a>
     </div>
+    <?= $album->title ?>
 </header>
 
 <div class="infos">

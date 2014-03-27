@@ -3,6 +3,7 @@
 namespace My\Logic;
 
 use Craft\Box\Mog;
+use Craft\Storage\File;
 use Craft\Text\Regex;
 use My\Model\Album;
 use My\Model\Track;
@@ -45,6 +46,18 @@ class Albums
             // save album
             $album = hydrate($album, $data);
             $id = Album::save($album);
+
+            // get cover url
+            if($data['cover_url'] and file_exists($data['cover_url'])) {
+                $split = explode('.', $data['cover_url']);
+                $album->cover = COVER_DIR . $id . '.' . end($split);
+                File::write($data['cover_url'], path($album->cover));
+                unset($data['cover_url']);
+            }
+            elseif($file = Mog::file('cover_upload')) {
+                $album->cover = COVER_DIR . $id . '.' . pathinfo($file->name, PATHINFO_EXTENSION);
+                File::upload('cover_upload', path($album->cover));
+            }
 
             // save tracks
             foreach($sides as $side) {
@@ -95,7 +108,7 @@ class Albums
      */
     public function update($id)
     {
-        // getalbum
+        // get album
         $album = Album::one($id);
 
         // form submitted
@@ -104,6 +117,18 @@ class Albums
             // get tracks
             $sides = $data['sides'];
             unset($data['sides']);
+
+            // get cover url
+            if(!empty($data['cover_url'])) {
+                $split = explode('.', $data['cover_url']);
+                $album->cover = COVER_DIR . $id . '.' . end($split);
+                File::write($data['cover_url'], path($album->cover));
+                unset($data['cover_url']);
+            }
+            elseif($file = Mog::file('cover_upload') and !empty($file->name)) {
+                $album->cover = COVER_DIR . $id . '.' . pathinfo($file->name, PATHINFO_EXTENSION);
+                File::upload('cover_upload', path($album->cover));
+            }
 
             // save album
             $album = hydrate($album, $data);

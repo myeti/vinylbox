@@ -21,11 +21,24 @@
 </section>
 
 <section id="albums" data-base="<?= url('/artist') ?>/{id}">
+
     <header>
-        <div class="actions">
-            <a data-modal href="<?= url('/artist/create') ?>"><i class="fa fa-plus"></i> ajouter artiste</a>
-        </div>
+        Collection de <?= OWNER ?>
     </header>
+
+    <div id="hello">
+
+        <h2>Actuellement dans votre collection :</h2>
+        <ul>
+            <li><?= $c_artists ?> artiste(s)</li>
+            <li><?= $c_albums ?> album(s)</li>
+            <li><?= $c_tracks ?> piste(s)</li>
+        </ul>
+
+        <a href="<?= url('/artist/create') ?>" data-modal><i class="fa fa-plus"></i> Ajouter un artiste</a>
+        
+    </div>
+
 </section>
 
 <section id="details" data-base="<?= url('/album') ?>/{id}"></section>
