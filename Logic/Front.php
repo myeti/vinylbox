@@ -6,7 +6,6 @@
  */
 namespace My\Logic;
 
-use Craft\Orm\Syn;
 use My\Model\Album;
 use My\Model\Artist;
 use My\Model\Track;
@@ -25,12 +24,16 @@ class Front
         $artists = Artist::all();
 
         // get stats
-        $stats = Syn::jar()->pdo()->query('
-            SELECT count(ar.`id`) as c_artists,  count(al.`id`) as c_albums,  count(tr.`id`) as c_tracks
-            FROM `artist` ar, `album` al, `track` tr;
-        ')->fetch();
+        $c_artists = count($artists);
+        $c_albums = count(Album::all());
+        $c_tracks = count(Track::all());
 
-        return ['artists' => $artists] + $stats;
+        return [
+            'artists' => $artists,
+            'c_artists' => $c_artists,
+            'c_albums' => $c_albums,
+            'c_tracks' => $c_tracks,
+        ];
     }
 
     /**
