@@ -11,6 +11,7 @@ require 'vendor/autoload.php';
  */
 define('OWNER',     'Babor Lelefan');
 define('COVER_DIR', '/public/img/cover/');
+@chmod(COVER_DIR, 0777);
 
 
 /**
@@ -19,10 +20,10 @@ define('COVER_DIR', '/public/img/cover/');
 
 use Craft\Orm\Syn;
 
-Syn::SQLite('database.sqlite')
+Syn::MySQL('vinylbox_db')
     ->map('artist', 'My\Model\Artist')
-    ->map('album', 'My\Model\Album')
-    ->map('track', 'My\Model\Track')
+    ->map('album',  'My\Model\Album')
+    ->map('track',  'My\Model\Track')
     ->build();
 
 
@@ -44,7 +45,7 @@ $app = new Craft\App\Bundle([
     '/album/:id/delete'     => 'My\Logic\Albums::delete',
     '/album/:id'            => 'My\Logic\Albums::show',
 
-    '/lost'                 => 'My\Logic\Error::lost',
+    '/lost'                 => 'My\Logic\Front::lost',
 ]);
 
 
