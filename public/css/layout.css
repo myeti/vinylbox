@@ -325,7 +325,17 @@ section#details {
     display: inline-block;
     width: 50px;
 }
-.modal form .line input:focus {
+.modal form .line textarea {
+    display: block;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+    padding: 8px 12px;
+    font-size: 14px;
+    width: 100%;
+    height: 120px;
+}
+.modal form .line input:focus,
+.modal form .line textarea:focus {
     border-color: #BBB;
 }
 
@@ -340,10 +350,5 @@ section#details {
 .modal form .line.side textarea {
     display: inline-block;
     vertical-align: top;
-    border: 1px solid #DDD;
-    border-radius: 2px;
-    padding: 8px 12px;
-    font-size: 14px;
     width: 380px;
-    height: 120px;
 }

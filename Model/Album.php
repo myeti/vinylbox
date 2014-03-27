@@ -24,6 +24,9 @@ class Album
     /** @var string */
     public $cover;
 
+    /** @var string */
+    public $infos;
+
     /** @var int */
     public $artist_id;
 

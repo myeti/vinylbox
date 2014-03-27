@@ -20,6 +20,11 @@
         Pays : <input type="text" name="country" value="<?= $artist->country ?>" />
     </div>
 
+    <div class="line">
+        Autres informations :
+        <textarea name="infos"><?= $artist->infos ?></textarea>
+    </div>
+
     <footer>
         <button data-modal-close type="reset">Annuler</button>
         <button type="submit">Sauvegarder</button>

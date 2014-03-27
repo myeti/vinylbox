@@ -24,6 +24,9 @@ class Artist
     /** @var string */
     public $country;
 
+    /** @var string */
+    public $infos;
+
 
     /**
      * Get all albums

@@ -24,6 +24,11 @@
         Cover (url) : <input type="text" name="cover_url" />
     </div>
 
+    <div class="line">
+        Autres informations :
+        <textarea name="infos"><?= $album->infos ?></textarea>
+    </div>
+
     <div class="sides">
 
         <?php $i = 0; foreach($tracklist as $side => $tracks): ?>

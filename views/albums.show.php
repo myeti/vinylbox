@@ -12,12 +12,24 @@
     <img src="<?= self::asset($album->cover) ?>" />
     <?php endif; ?>
 
+    <?php if($album->genre): ?>
     <div class="line">
         <span class="label">Genre :</span> <?= $album->genre ?>
     </div>
+    <?php endif; ?>
+
+    <?php if($album->date): ?>
     <div class="line">
         <span class="label">Date :</span> <?= $album->date ?>
     </div>
+    <?php endif; ?>
+
+    <?php if($album->infos): ?>
+    <div class="line">
+        <?= $album->infos ?>
+    </div>
+    <?php endif; ?>
+
 </div>
 
 <ul class="sides">
