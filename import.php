@@ -1,5 +1,7 @@
 <?php
 
+set_time_limit(600);
+
 /**
  * Hello !
  */
@@ -9,7 +11,7 @@ require 'vendor/autoload.php';
 /**
  * Config
  */
-define('DEV', true);
+define('DEV', false);
 define('COVER_DIR', '/public/img/cover/');
 @chmod(COVER_DIR, 0777);
 
